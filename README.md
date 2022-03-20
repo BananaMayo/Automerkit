@@ -6,6 +6,8 @@
 kohdalla, jotta hän voi siirtyä eteenpäin kysymyksissä. Automerkkien lisäksi on myös 
 kysymyksiä automalleista. Jokainen käyttäjä on peruskäyttäjä tai ylläpitäjä.*
 
+Sovelluksen ominaisuuksia ovat:
+
 - Käyttäjä voi kirjautua sisään ja ulos sekä luoda uuden tunnuksen
 - Käyttäjä näkee miten hän on edistynyt kysymyksissä, kuinka monta oikein ja väärin
 - Käyttäjä näkee montako kysymystä putkeen hän on vastannut oikein ja saa arvonimen 
