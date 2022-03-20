@@ -8,7 +8,7 @@ kysymyksiä automalleista. Jokainen käyttäjä on peruskäyttäjä tai ylläpit
 
 - Käyttäjä voi kirjautua sisään ja ulos sekä luoda uuden tunnuksen
 - Käyttäjä näkee miten hän on edistynyt kysymyksissä, kuinka monta oikein ja väärin
-- Käyttäjä näkee montako kysymystä putkeen hän on saanut oikein ja saa arvonimen 
+- Käyttäjä näkee montako kysymystä putkeen hän on vastannut oikein ja saa arvonimen 
   sen mukaan
 - Käyttäjä näkee Top 10 rankinglistan etusivulla, jossa pelanneet käyttäjät sijoittuvat
   sen mukaan miten monta kysymystä putkeen on vastannut oikein
