@@ -2,7 +2,7 @@
 
 ## Tsoha - Niklas Nygård
 
-*Sovelluksen avulla voi oppia automerkkejä. Käyttäjän tulee vastata oikein eri automerkkien 
+* Sovelluksen avulla voi oppia automerkkejä. Käyttäjän tulee vastata oikein eri automerkkien 
 kohdalla, jotta hän voi siirtyä eteenpäin kysymyksissä. Automerkkien lisäksi on myös 
 kysymyksiä automalleista. Jokainen käyttäjä on peruskäyttäjä tai ylläpitäjä.
 
