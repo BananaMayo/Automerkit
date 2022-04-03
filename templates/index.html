@@ -1,0 +1,11 @@
+<h1>Tervetuloa autojen pariin!</h1>
+<a href="/new">Uusi auto kysely</a>
+<hr>
+{% for poll in polls %}
+Aihe: {{ poll.topic }} <br>
+Luotu: {{ poll.created_at.strftime("%Y-%m-%d %H:%M:%S") }} <br>
+<a href="/poll/{{ poll.id }}">Avaa kysely</a> |
+<a href="/result/{{ poll.id }}">Näytä tulokset</a> |
+<a href="/remove/{{ poll.id }}">Poista kysely (Ei toimi vielä)</a><br>
+<hr>
+{% endfor %}
