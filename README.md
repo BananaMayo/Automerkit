@@ -16,3 +16,5 @@ Sovelluksen ominaisuuksia ovat:
   sen mukaan miten monta kysymystä putkeen on vastannut oikein *(Ei vielä toiminnassa)*
 - Ylläpitäjä voi luoda automerkki- ja malli kysymyksiä *(Kesekeneräinen)*
 - Ylläpitäjä voi poistaa luomansa kysymyksen *(Kesekeneräinen)*
+
+Sovellusta voi testata [Herokussa (Linkkiä ei vielä ole)]
