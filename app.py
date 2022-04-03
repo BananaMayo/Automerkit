@@ -1,7 +1,7 @@
 from flask import Flask
-from flask import redirect, render_template, request, session
 from flask_sqlalchemy import SQLAlchemy
 from os import getenv
+from flask import session, request, redirect, render_template
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql:///niklasny"
@@ -13,10 +13,6 @@ def index():
     result = db.session.execute(sql)
     polls = result.fetchall()
     return render_template("index.html", polls=polls)
-
-@app.route("/new")
-def new():
-    return render_template("new.html")
 
 @app.route("/create", methods=["POST"])
 def create():
@@ -31,6 +27,11 @@ def create():
             db.session.execute(sql, {"poll_id":poll_id, "choice":choice})
     db.session.commit()
     return redirect("/")
+
+@app.route("/new")
+def new():
+    return render_template("new.html")
+
 
 @app.route("/poll/<int:id>")
 def poll(id):
