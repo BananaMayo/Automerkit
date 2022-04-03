@@ -4,7 +4,7 @@ from os import getenv
 from flask import session, request, redirect, render_template
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql:///user"
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql:///'käyttäjä'"
 db = SQLAlchemy(app)
 
 @app.route("/")
