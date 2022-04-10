@@ -1,22 +1,29 @@
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
-    username TEXT,
+    name TEXT,
+    password TEXT,
+    role INTEGER
 );
+
 CREATE TABLE polls (
     id SERIAL PRIMARY KEY,
     topic TEXT,
-    created_at TIMESTAMP
+    created_at TIMESTAMP,
+    visible INTEGER
 );
+
 CREATE TABLE choices (
     id SERIAL PRIMARY KEY,
     poll_id INTEGER REFERENCES polls,
     choice TEXT
 );
+
 CREATE TABLE answers (
     id SERIAL PRIMARY KEY,
     choice_id INTEGER REFERENCES choices,
     sent_at TIMESTAMP
 );
+
 
 CREATE TABLE correct (
     id SERIAL PRIMARY KEY,

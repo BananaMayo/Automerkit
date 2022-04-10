@@ -1,11 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+
 <h1>Tervetuloa autojen pariin!</h1>
-<a href="/new">Uusi auto kysely</a>
-<hr>
-{% for poll in polls %}
-Aihe: {{ poll.topic }} <br>
-Luotu: {{ poll.created_at.strftime("%Y-%m-%d %H:%M:%S") }} <br>
-<a href="/poll/{{ poll.id }}">Avaa kysely</a> |
-<a href="/result/{{ poll.id }}">Näytä tulokset</a> |
-<a href="/remove/{{ poll.id }}">Poista kysely (Ei toimi vielä)</a><br>
-<hr>
+
+{% if session.user_id %}
+Olet kirjautunut sisään, hei <b>{{ session.user_name }}</b>! | <a href="/logout">Kirjaudu ulos</a><br>
+{% else %}
+Et ole kirjautunut sisään. <a href="/login">Kirjaudu sisään</a><br>
+{% endif %}
+
+<ul>
+{% for poll in polls %} 
+<a href="/poll/{{ poll.id }}">{{ poll.topic }}</a> 
 {% endfor %}
+</ul>
+
+{% if session.user_role == 2 %}
+<h3>Asiantuntijan tominnot</h3>
+<ul>
+<li><a href="/new">Uusi auto kysely</a></li>
+<li><a href="/remove">Poista kysely (Ei toimi vielä)</a></li>
+<li><a href="/result">Näytä tulokset</a></li>
+</ul>
+{% endif %}
+
+
+{% endblock %}
