@@ -103,3 +103,9 @@ def register():
         if not users.register(username, password1, role):
             return render_template("error.html", message="Rekisteröinti ei onnistunut")
         return redirect("/")
+
+#CREATE TABLE correct (
+#    id SERIAL PRIMARY KEY,
+#    user_id INTEGER REFERENCES users,
+#   poll_id INTEGER REFERENCES polls,   
+#);

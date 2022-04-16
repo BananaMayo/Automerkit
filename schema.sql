@@ -23,11 +23,3 @@ CREATE TABLE answers (
     choice_id INTEGER REFERENCES choices,
     sent_at TIMESTAMP
 );
-
-
-CREATE TABLE correct (
-    id SERIAL PRIMARY KEY,
-    user_id INTEGER REFERENCES users,
-    poll_id INTEGER REFERENCES polls,
-    
-);
