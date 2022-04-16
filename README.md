@@ -17,4 +17,4 @@ Sovelluksen ominaisuuksia ovat:
 - Ylläpitäjä voi luoda automerkki- ja malli kysymyksiä *(Kesekeneräinen)*
 - Ylläpitäjä voi poistaa luomansa kysymyksen *(Kesekeneräinen)*
 
-Sovellusta voi testata [Herokussa (Linkkiä ei vielä ole)]
+Sovellusta voi testata [Herokussa](https://automerkit-vierailijat.herokuapp.com/).
