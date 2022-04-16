@@ -55,7 +55,7 @@ def results():
 def remove():
     users.require_role(2)
 
-    if request.method == "GET":
+    ##if request.method == "GET":
 
 
 
