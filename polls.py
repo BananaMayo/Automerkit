@@ -23,6 +23,9 @@ def create_poll():
     db.session.commit()
     return redirect("/")
 
+    #<p>Auton kuva:<br>
+    #<input type="file" accept="image/*" /> <br>
+
 def answer_poll(id):
     sql = "SELECT topic FROM polls WHERE id=:id"
     result = db.session.execute(sql, {"id":id})

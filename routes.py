@@ -10,8 +10,13 @@ import polls
 def index():
     return render_template("index.html", polls=polls.get_polls())
 
-@app.route("/create", methods=["POST", "GET"])
-def create_poll():
+@app.route("/new")
+def new():
+    return render_template("new.html")
+
+### sivu ei onnistu avaamaan tätä
+@app.route("/create", methods=["GET", "POST"])
+def create():
     users.require_role(2)
 
     if request.method == "GET":
@@ -25,19 +30,14 @@ def create_poll():
             return render_template("error.html", message="Automerkissä tulee olla 1-15 merkkiä")
         
         poll = polls.create_poll()
-        return redirect("/deck/"+str(poll))
-
-
-@app.route("/new")
-def new():
-    return render_template("new.html")
+        return redirect("/poll/"+str(poll))
 
 
 @app.route("/poll/<int:id>")
 def poll(id):
     users.require_role(1)
     return render_template("poll.html", answer=polls.answer_poll(id))
-    
+
 ### KOKEILU, ei välttämättä toimi
 @app.route("/answer", methods=["POST"])
 def answer():
@@ -47,12 +47,16 @@ def answer():
 ###stats TÄMÄ PITÄÄ KORJATA
 @app.route("/result/<int:id>")
 def results():
-    pass
+    return render_template("result.html")
 
-#### TEE TÄMÄ SEURAAVAKSI
-@app.route("/remove")
+### TEE TÄMÄ SEURAAVAKSI, Korjaa taulukot jotta ne toimivat hyvin,
+### esim pollsiin lisää tekijän id:
+@app.route("/remove", methods=["GET", "POST"])
 def remove():
-    pass
+    users.require_role(2)
+
+    if request.method == "GET":
+
 
 
 ###Login osuus
