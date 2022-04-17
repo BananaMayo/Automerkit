@@ -1,1 +1,27 @@
-<a href="/remove">Poista kysely (Ei toimi vielä)</a>
+{% extends "layout.html" %}
+{% block content %}
+
+<h2>Poista kysely</h2>
+
+<form action="/remove" method="post">
+
+<p>Valitse kysely jonka haluat poistaa:</p>
+
+{% for poll in list %}
+
+<input type="radio" name="poll" value="{{ poll.id }}"> {{ poll.topic }} <br>
+
+{% endfor %}
+
+<p>
+
+<input type="submit" value="Poista">
+
+<input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+
+</form>
+
+<p>
+<a href="/">Palaa takaisin</a>
+
+{% endblock %}

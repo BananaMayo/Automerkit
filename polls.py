@@ -54,9 +54,13 @@ def result(id):
     choices = result.fetchall()
     return render_template("result.html", topic=topic, choices=choices)
 
-#####
-def remove_poll():
-    sql = "UPDATE polls SET visible=0 WHERE id=:id"
-    db.session.execute(sql, {"id":id})
+
+def remove_poll(poll_id, user_id):
+    sql = "UPDATE polls SET visible=0 WHERE id=:id AND creator_id=user_id"
+    db.session.execute(sql, {"id":poll_id, "user_id":user_id})
     db.session.commit()
-    return render_template("remove.html")
+    
+
+def my_polls(user_id):
+    sql = "SELECT id, topic FROM polls WHERE creator_id=:user_id AND visible=1 ORDER BY topic"
+    return db.session.execute(sql, {"user_id":user_id}).fetchall()

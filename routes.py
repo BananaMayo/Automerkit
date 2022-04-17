@@ -55,9 +55,16 @@ def results():
 def remove():
     users.require_role(2)
 
-    ##if request.method == "GET":
+    if request.method == "GET":
+        my_polls = polls.my_polls(users.user_id())
+        return render_template("remove.html", list=my_polls)
+    
+    if request.method == "POST":
+        users.check_csrf()
 
-
+        if "poll" in request.form:
+            poll = request.form["poll"]
+            polls.remove_poll(poll, users.user_id())
 
 ###Login osuus
 
