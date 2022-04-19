@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
 
-<h1>Tervetuloa autojen pariin!</h1>
+<h2>Tervetuloa autojen pariin!</h2>
 
 {% if session.user_id %}
 Olet kirjautunut sisään, hei <b>{{ session.user_name }}</b>! | <a href="/logout">Kirjaudu ulos</a><br>
@@ -9,9 +9,12 @@ Olet kirjautunut sisään, hei <b>{{ session.user_name }}</b>! | <a href="/logou
 Et ole kirjautunut sisään. <a href="/login">Kirjaudu sisään</a><br>
 {% endif %}
 
+<p>
+
+<br>Tässä on valikoima kyselyitä joista voit vapaasti valita:
 <ul>
 {% for poll in polls %} 
-<a href="/poll/{{ poll.id }}">{{ poll.topic }}</a> 
+<li><a href="/poll/{{ poll.id }}">{{ poll.topic }}</a>
 {% endfor %}
 </ul>
 
@@ -20,9 +23,8 @@ Et ole kirjautunut sisään. <a href="/login">Kirjaudu sisään</a><br>
 <ul>
 <li><a href="/new">Uusi auto kysely</a></li>
 <li><a href="/remove">Poista kysely</a></li>
-<li><a href="/result">Näytä tulokset</a></li>
+<li><a href="/statistics">Näytä tulokset</a></li>
 </ul>
 {% endif %}
-
 
 {% endblock %}

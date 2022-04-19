@@ -2,9 +2,8 @@ from app import app
 from flask import render_template, request, redirect
 import users
 import polls
+import statistic
 
-#from database import db
-#täytyy korjata db. alkuiset toiminnot
 
 @app.route("/")
 def index():
@@ -14,7 +13,7 @@ def index():
 def new():
     return render_template("new.html")
 
-### sivu ei onnistu avaamaan tätä
+### TÄMÄ SEURAAVAKSI; sivu ei onnistu avaamaan tätä
 @app.route("/create", methods=["GET", "POST"])
 def create():
     users.require_role(2)
@@ -25,11 +24,11 @@ def create():
     if request.method == "POST":
         users.check_csrf()
 
-        text = request.form["text"]
-        if len(text) < 1 or len(text) > 15:
+        topic = request.form["topic"]
+        if len(topic) < 1 or len(topic) > 15:
             return render_template("error.html", message="Automerkissä tulee olla 1-15 merkkiä")
         
-        poll = polls.create_poll()
+        poll = polls.create_poll(topic, users.user_id())
         return redirect("/poll/"+str(poll))
 
 
@@ -44,13 +43,14 @@ def answer():
         return render_template(polls.send_answer())
 
 
-###stats TÄMÄ PITÄÄ KORJATA
-@app.route("/result/<int:id>")
-def results():
-    return render_template("result.html")
 
-### TEE TÄMÄ SEURAAVAKSI, Korjaa taulukot jotta ne toimivat hyvin,
-### esim pollsiin lisää tekijän id:
+@app.route("/statistics")
+def poll_statistics():
+    users.require_role(2)
+    data = statistic.all_stats(users.user_id())
+    return render_template("statistics.html", data=data)
+
+
 @app.route("/remove", methods=["GET", "POST"])
 def remove():
     users.require_role(2)
@@ -66,6 +66,7 @@ def remove():
             poll = request.form["poll"]
             polls.remove_poll(poll, users.user_id())
 
+        return redirect("/")
 ###Login osuus
 
 @app.route("/login", methods=["GET", "POST"])

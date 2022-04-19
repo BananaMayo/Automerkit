@@ -10,18 +10,18 @@ def get_polls():
     polls = result.fetchall()
     return render_template("index.html", polls=polls)
 
-def create_poll():
+def create_poll(topic, creator_id):
     topic = request.form["topic"]
-    sql = "INSERT INTO polls (topic, created_at) VALUES (:topic, NOW()) RETURNING id"
-    result = db.session.execute(sql, {"topic":topic})
-    poll_id = result.fetchone()[0]
+    sql = "INSERT INTO polls (creator_id, topic, created_at, visible) VALUES (:creator_id, :topic, NOW(), 1) RETURNING id"
+    poll_id = db.session.execute(sql, {"creator_id":creator_id, "topic":topic}).fetchone()[0]
+    
     choices = request.form.getlist("choice")
     for choice in choices:
         if choice != "":
             sql = "INSERT INTO choices (poll_id, choice) VALUES (:poll_id, :choice)"
             db.session.execute(sql, {"poll_id":poll_id, "choice":choice})
     db.session.commit()
-    return redirect("/")
+    return poll_id
 
     #<p>Auton kuva:<br>
     #<input type="file" accept="image/*" /> <br>
@@ -44,19 +44,19 @@ def send_answer():
         db.session.commit()
     return redirect("/result/" + str(poll_id))
 
-def result(id):
-    sql = "SELECT topic FROM polls WHERE id=:id"
-    result = db.session.execute(sql, {"id":id})
-    topic = result.fetchone()[0]
-    sql = "SELECT c.choice, COUNT(a.id) FROM choices c LEFT JOIN answers a " \
-          "ON c.id=a.choice_id WHERE c.poll_id=:poll_id GROUP BY c.id"
-    result = db.session.execute(sql, {"poll_id":id})
-    choices = result.fetchall()
-    return render_template("result.html", topic=topic, choices=choices)
+#def result(id):
+#    sql = "SELECT topic FROM polls WHERE id=:id"
+#    result = db.session.execute(sql, {"id":id})
+#    topic = result.fetchone()[0]
+#    sql = "SELECT c.choice, COUNT(a.id) FROM choices c LEFT JOIN answers a " \
+#          "ON c.id=a.choice_id WHERE c.poll_id=:poll_id GROUP BY c.id"
+#    result = db.session.execute(sql, {"poll_id":id})
+#    choices = result.fetchall()
+#    return render_template("result.html", topic=topic, choices=choices)
 
 
 def remove_poll(poll_id, user_id):
-    sql = "UPDATE polls SET visible=0 WHERE id=:id AND creator_id=user_id"
+    sql = "UPDATE polls SET visible=0 WHERE id=:id AND creator_id=:user_id"
     db.session.execute(sql, {"id":poll_id, "user_id":user_id})
     db.session.commit()
     

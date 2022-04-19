@@ -1,6 +1,6 @@
 <form action="/create" method="POST">
     <p>Kyselyn nimi:<br>
-    <input type="text" name="topic"></p>
+    <input type="text" name="topic" minlength="1" maxlength="15" ></p>
     <p>Automerkki 1:<br>
     <input type="text" name="choice"></p> 
     <p>Automerkki 2:<br>
@@ -9,5 +9,8 @@
     <input type="text" name="choice"></p>
     <p>Automerkki 4:<br>
     <input type="text" name="choice"></p><br>
+
     <input type="submit" value="Luo kysely">
+
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
     </form>

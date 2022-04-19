@@ -24,5 +24,6 @@ CREATE TABLE answers (
     id SERIAL PRIMARY KEY,
     choice_id INTEGER REFERENCES choices,
     sent_at TIMESTAMP,
-    user_id INTEGER REFERENCES users
+    user_id INTEGER REFERENCES users,
+    result INTEGER
 );
