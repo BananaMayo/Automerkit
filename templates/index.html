@@ -2,7 +2,7 @@
 {% block content %}
 
 <h2>Tervetuloa autojen pariin!</h2>
-
+<p>
 {% if session.user_id %}
 Olet kirjautunut sisään, hei <b>{{ session.user_name }}</b>! | <a href="/logout">Kirjaudu ulos</a><br>
 {% else %}
@@ -11,7 +11,7 @@ Et ole kirjautunut sisään. <a href="/login">Kirjaudu sisään</a><br>
 
 <p>
 
-<br>Tässä on valikoima kyselyitä joista voit vapaasti valita:
+<br>Tässä on valikoima kyselyitä joista voit valita vapaasti:
 <ul>
 {% for poll in polls %} 
 <li><a href="/poll/{{ poll.id }}">{{ poll.topic }}</a>
@@ -19,9 +19,9 @@ Et ole kirjautunut sisään. <a href="/login">Kirjaudu sisään</a><br>
 </ul>
 
 {% if session.user_role == 2 %}
-<h3>Asiantuntijan tominnot</h3>
+<h3>Vain asiantuntijalle</h3>
 <ul>
-<li><a href="/new">Uusi auto kysely</a></li>
+<li><a href="/new">Luo auto kysely</a></li>
 <li><a href="/remove">Poista kysely</a></li>
 <li><a href="/statistics">Näytä tulokset</a></li>
 </ul>
