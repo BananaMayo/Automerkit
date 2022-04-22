@@ -2,24 +2,5 @@
 {% block content %}
 
 <h2>Kyselyiden tulokset</h2>
-{% for entry in data %}
-<h3>Autokysely {{ entry[0] }}</h3>
-<table>
-<tr>
-<th>noviisi</th>
-<th>oikein kpl</th>
-<th>väärin kpl</th>
-</tr>
-{% for user in entry[1] %}
-<tr>
-<td>{{ user[0] }}</td>
-<td>{{ user[1] }}</td>
-<td>{{ user[2] }}</td>
-<td>{{ user[1]-user[2] }}</td>
-</tr>
-{% endfor %}
-</table>
-{% endfor %}
-<a href="/">Etusivulle</a>
 
 {% endblock %}
