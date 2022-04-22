@@ -1,0 +1,29 @@
+body {
+    margin: auto;
+    max-width: 65em;
+    font-family: 'Monaco', 'Lucida Console', monospace;
+    background: url(background.jpg) no-repeat center center fixed;
+    position: relative;
+}
+
+table {
+    width: 80%;
+}
+
+td, th {
+    border-style: solid;
+    border-color: rgb(5, 5, 5);
+    border-width: 1px;
+}
+
+h2, h1, h3, p, ul, form, title, hr {
+    color: aliceblue;
+}
+
+input{
+    color: black;
+}
+
+li, a {
+    color: skyblue;
+}
