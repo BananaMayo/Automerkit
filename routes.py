@@ -35,7 +35,8 @@ def create():
 @app.route("/poll/<int:id>")
 def poll(id):
     users.require_role(1)
-    return render_template("poll.html", answer=polls.answer_poll(id))
+    poll = polls.answer_poll(id)
+    return render_template("poll.html", answer=poll)
 
 ### KOKEILU, ei välttämättä toimi
 @app.route("/answer", methods=["POST"])

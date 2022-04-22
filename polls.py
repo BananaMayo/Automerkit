@@ -5,10 +5,9 @@ from flask import render_template, request, redirect
 #jos render_template ei toimi niin käytä esim: return db.session.execute(sql).fetchall()
 
 def get_polls():
-    sql = "SELECT id, topic, created_at FROM polls ORDER BY id DESC"
-    result = db.session.execute(sql)
-    polls = result.fetchall()
-    return render_template("index.html", polls=polls)
+    sql = "SELECT id, topic FROM polls WHERE visible=1 ORDER BY id ASC"
+    return db.session.execute(sql).fetchall()
+
 
 def create_poll(topic, creator_id):
     topic = request.form["topic"]
@@ -33,7 +32,6 @@ def answer_poll(id):
     sql = "SELECT id, choice FROM choices WHERE poll_id=:id"
     result = db.session.execute(sql, {"id":id})
     choices = result.fetchall()
-    return render_template("poll.html", id=id, topic=topic, choices=choices)
 
 def send_answer():
     poll_id = request.form["id"]
