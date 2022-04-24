@@ -13,7 +13,7 @@ def index():
 def new():
     return render_template("new.html")
 
-### TÄMÄ SEURAAVAKSI; sivu ei onnistu avaamaan tätä
+### Pitää korjata, sivu ei onnistu avaamaan tätä
 @app.route("/create", methods=["GET", "POST"])
 def create():
     users.require_role(2)
@@ -31,18 +31,18 @@ def create():
         poll = polls.create_poll(topic, users.user_id())
         return redirect("/poll/"+str(poll))
 
-
+### Pitää korjata
 @app.route("/poll/<int:id>")
 def poll(id):
     users.require_role(1)
-    poll = polls.answer_poll(id)
-    return render_template("poll.html", answer=poll)
+    choices = polls.answer_poll_choices(id)
+    topic = polls.answer_poll_topic(id)
+    return render_template("poll.html", id=id, topic=topic, choice=choices)
 
-### KOKEILU, ei välttämättä toimi
+### Pitää korjata
 @app.route("/answer", methods=["POST"])
 def answer():
         return render_template(polls.send_answer())
-
 
 
 @app.route("/statistics")

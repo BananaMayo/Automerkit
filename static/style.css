@@ -24,6 +24,10 @@ input{
     color: black;
 }
 
-li, a {
+a {
     color: skyblue;
+}
+
+li {
+    color: aliceblue;
 }

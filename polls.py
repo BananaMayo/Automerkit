@@ -22,16 +22,17 @@ def create_poll(topic, creator_id):
     db.session.commit()
     return poll_id
 
-    #<p>Auton kuva:<br>
-    #<input type="file" accept="image/*" /> <br>
 
-def answer_poll(id):
+def answer_poll_topic(id):
     sql = "SELECT topic FROM polls WHERE id=:id"
-    result = db.session.execute(sql, {"id":id})
-    topic = result.fetchone()[0]
+    db.session.execute(sql, {"id":id}).fetchone()[0]
+    db.session.commit()
+
+def answer_poll_choices(id):
     sql = "SELECT id, choice FROM choices WHERE poll_id=:id"
-    result = db.session.execute(sql, {"id":id})
-    choices = result.fetchall()
+    db.session.execute(sql, {"id":id}).fetchall()
+    db.session.commit()
+    
 
 def send_answer():
     poll_id = request.form["id"]
