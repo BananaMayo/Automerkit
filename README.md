@@ -18,3 +18,6 @@ Sovelluksen ominaisuuksia ovat:
 - Asiantuntija näkee vastanneiden tilastot
 
 Sovellusta voi testata [Herokussa](https://automerkit-vierailijat.herokuapp.com/).
+  * Tilastot ja poisto eivät jostain syystä toimi Herokussa, mutta Flask runilla ne toimii. Kyselyn luoiminen on
+  vielä vaiheessa, toimii kuitenkin Flask runilla muttei Herokusssa; kuvan lataamiselle tulee vielä muutoksia 
+  jotta sen saa jokaisen kysymyksen kohdalle näkyväksi. 
