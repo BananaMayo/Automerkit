@@ -11,10 +11,11 @@ Sovelluksen ominaisuuksia ovat:
 - Noviisi näkee miten hän on edistynyt kysymyksissä, kuinka monta oikein ja väärin *(Kesekeneräinen)*
 - Noviisi näkee montako kysymystä putkeen hän on vastannut oikein ja saa arvonimen 
   sen mukaan *(Kesekeneräinen)*
-- Noviisi näkee Top 10 rankinglistan etusivulla, jossa pelanneet käyttäjät sijoittuvat
-  sen mukaan miten monta kysymystä putkeen on vastannut oikein *(Ei vielä toiminnassa)*
 - Asiantuntija voi luoda automerkki kysymyksiä *(Kesekeneräinen)*
 - Asiantuntija voi poistaa luomansa kysymyksen 
 - Asiantuntija näkee vastanneiden tilastot
 
 Sovellusta voi testata [Herokussa](https://automerkit-vierailijat.herokuapp.com/).
+  * Tilastot ja poisto eivät jostain syystä toimi Herokussa, mutta Flask runilla ne toimii. Kyselyn luoiminen on
+  vielä vaiheessa, toimii kuitenkin Flask runilla muttei Herokusssa; kuvan lataamiselle tulee vielä muutoksia 
+  jotta sen saa jokaisen kysymyksen kohdalle näkyväksi. 
