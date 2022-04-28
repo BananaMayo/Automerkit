@@ -9,11 +9,10 @@ import statistic
 def index():
     return render_template("index.html", polls=polls.get_polls())
 
-@app.route("/new")
+@app.route("/new", methods=["GET", "POST"])
 def new():
     return render_template("new.html")
 
-### Pitää korjata, sivu ei onnistu avaamaan tätä
 @app.route("/create", methods=["GET", "POST"])
 def create():
     users.require_role(2)
@@ -28,22 +27,37 @@ def create():
         if len(topic) < 1 or len(topic) > 15:
             return render_template("error.html", message="Automerkissä tulee olla 1-15 merkkiä")
         
+#        image = request.form["image/*"]
+#        if image == "No file chosen":
+#            return render_template("error.html", message="Et valinnut kuvaa")
+
         poll = polls.create_poll(topic, users.user_id())
         return redirect("/poll/"+str(poll))
 
-### Pitää korjata
+        
+### Pitää korjata kuva näkyville
 @app.route("/poll/<int:id>")
-def poll(id):
+def play_poll(id):
     users.require_role(1)
-    choices = polls.answer_poll_choices(id)
-    topic = polls.answer_poll_topic(id)
-    return render_template("poll.html", id=id, topic=topic, choice=choices)
+#    image = polls.get_picture(id)
+    topic = polls.get_poll_topic(id)
+    choices = polls.get_poll_choices(id)
 
-### Pitää korjata
+    return render_template("poll.html", id=id, topic=topic, choices=choices)
+
+### Pitää korjata, ei onnistu avaamaan sivua
 @app.route("/answer", methods=["POST"])
 def answer():
-        return render_template(polls.send_answer())
+    users.require_role(1)
+    users.check_csrf()
 
+    poll_id = request.form["id"]
+    choice_id = request.form["answer"]
+    answer = request.form["answer"]
+
+    polls.send_answer(choice_id, answer, users.user_id())
+    choices = polls.get_choice(choice_id)
+    return render_template("answer.html", id=poll_id, choice = choices[0], answer=answer, correct = choices[1])
 
 @app.route("/statistics")
 def poll_statistics():
@@ -107,7 +121,7 @@ def register():
 
         role = request.form["role"]
         if role not in ("1", "2"):
-            return render_template("error.html", message="Tuntematon käyttäjärooli")
+            return render_template("error.html", message="Tuntematon käyttäjätaso")
 
         if not users.register(username, password1, role):
             return render_template("error.html", message="Rekisteröinti ei onnistunut")

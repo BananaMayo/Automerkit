@@ -17,7 +17,8 @@ CREATE TABLE choices (
     id SERIAL PRIMARY KEY,
     poll_id INTEGER REFERENCES polls,
     choice TEXT,
-    image BYTEA
+    image BYTEA,
+    correct_choice TEXT
 );
 
 CREATE TABLE answers (
