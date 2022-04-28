@@ -1,10 +1,9 @@
 {% extends "2layout.html" %}
 {% block content %}
 
-<<<<<<< HEAD
-<h2>Kyselyn nimi:</h2>
+<h2>Kyselyiden tilastot:</h2>
 {% for entry in data %}
-<h3>Autokysely {{ entry[0] }}</h3>
+<h3>Kysely: {{ entry[0] }}</h3>
 <table>
 <tr>
 <th>noviisi</th>
@@ -14,8 +13,3 @@
 {% endfor %}
 <br><a href="/">Etusivulle</a>
 {% endblock %}
-=======
-<h2>Kyselyiden tulokset</h2>
-
-{% endblock %}
->>>>>>> e6446bab0342b49f64132eee5010b134ccb5c890

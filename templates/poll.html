@@ -1,18 +1,26 @@
 {% extends "2layout.html" %}
 {% block content %}
 
-{{ topic }}
+<h2>|{{ topic }}|</h2>
 
-<br>
-Valitse oikea vaihtoehto:
+<p>{ image }</p>
+
+<h3>Valitse oikea vaihtoehto:</h3>
+
 <form action="/answer" method="POST">
-    {% for choice in choices %}
-    <input type="radio" name="answer" value="{{ choice.id }}"> {{ choice.choice }} <br>
-    {% endfor %}
-    <p>
-    <input type="submit" value="Vastaa">
-    <input type="hidden" name="id" value="{{ id }}">
-    </form>
+
+{% for choice in choices[0:4] %}
+
+<input type="radio" name="answer" value="{{ choice.id }}"> {{ choice.choice }} <br>
+{% endfor %}
+<p>
+
+<input type="hidden" name="id" value="{{ id }}">
+<input type="hidden" name="choice_id" value="{{ choice_id }}">
+
+<input type="submit" value="Vastaa">
+
+</form>
 <hr>
 <a href="/">Takaisin</a>
 

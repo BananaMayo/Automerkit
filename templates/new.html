@@ -19,9 +19,14 @@
     <p>Auton kuva:<br>
     <input type="file" accept="image/*" />
     <br>
-    <br><input type="submit" value="Luo kysely">
+
+    <p><strong>Kirjoita oikea vastaus tähän:</strong><br>
+    <input type="text" name="correct"></p>
+
+    <input type="submit" value="Luo kysely">
+
     <br>
     <br><a href="/">Etusivulle</a>
     <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-    </form>
+</form>
 {% endblock %}
