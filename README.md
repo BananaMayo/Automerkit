@@ -11,8 +11,6 @@ Sovelluksen ominaisuuksia ovat:
 - Noviisi näkee miten hän on edistynyt kysymyksissä, kuinka monta oikein ja väärin *(Kesekeneräinen)*
 - Noviisi näkee montako kysymystä putkeen hän on vastannut oikein ja saa arvonimen 
   sen mukaan *(Kesekeneräinen)*
-- Noviisi näkee Top 10 rankinglistan etusivulla, jossa pelanneet käyttäjät sijoittuvat
-  sen mukaan miten monta kysymystä putkeen on vastannut oikein *(Ei vielä toiminnassa)*
 - Asiantuntija voi luoda automerkki kysymyksiä *(Kesekeneräinen)*
 - Asiantuntija voi poistaa luomansa kysymyksen 
 - Asiantuntija näkee vastanneiden tilastot
