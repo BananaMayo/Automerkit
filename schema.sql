@@ -7,10 +7,10 @@ CREATE TABLE users (
 
 CREATE TABLE polls (
     id SERIAL PRIMARY KEY,
+    creator_id INTEGER REFERENCES users,
     topic TEXT,
     created_at TIMESTAMP,
-    visible INTEGER,
-    creator_id INTEGER REFERENCES users
+    visible INTEGER
 );
 
 CREATE TABLE choices (
