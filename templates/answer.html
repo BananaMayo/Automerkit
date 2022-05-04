@@ -1,16 +1,13 @@
 {% extends "2layout.html" %}
 {% block content %}
 
-<h2>Vastaus</h2>
+<h2>Vastauksesi</h2>
 
-Valitsit merkin: <b>{{ answer }}</b> .
+Valitsit merkin: <b>{{ choice }}</b> .
 <p>
 
-{% if answer == correct %}
-Asiantuntijuutesi kasvaa, se oli oikein!
-{% else %}
-Takaisin ohjekirjan pariin, se oli väärin :( <b>{{ correct }}</b>.
-{% endif %}
+Oikea vaihtoehto on: <b>{{ correct }}</b>
+
 
 <p>
 <a href="/">Palaa etusivulle</a>
