@@ -2,12 +2,9 @@ from random import randint
 from database import db
 from flask import render_template, request, redirect
 
-#jos render_template ei toimi niin käytä esim: return db.session.execute(sql).fetchall()
-
 def get_polls():
     sql = "SELECT id, topic FROM polls WHERE visible=1 ORDER BY id ASC"
     return db.session.execute(sql).fetchall()
-
 
 def create_poll(topic, creator_id):
     topic = request.form["topic"]
@@ -20,9 +17,10 @@ def create_poll(topic, creator_id):
             sql = "INSERT INTO choices (poll_id, choice) VALUES (:poll_id, :choice)"
             db.session.execute(sql, {"poll_id":poll_id, "choice":choice})
     
-    correct = request.form["correct"]
-    sql = "INSERT INTO choices (poll_id, correct_choice) VALUES (:poll_id, :correct_choice)"
-    db.session.execute(sql, {"poll_id":poll_id, "correct_choice":correct}) 
+    if "correct" in request.form:
+        correct = request.form["correct"]
+        sql = "INSERT INTO choices (poll_id, correct_choice) VALUES (:poll_id, :correct_choice)"
+        db.session.execute(sql, {"poll_id":poll_id, "correct_choice":correct}) 
     
     db.session.commit()
     return poll_id
@@ -61,7 +59,7 @@ def send_answer(choice_id, answer, user_id):
     result = 1 if answer == correct else 0
 
     sql = """INSERT INTO answers (user_id, choice_id, sent_at, result)
-             VALUES (:user_id, :choice_id, NOW(), :result)"""
+            VALUES (:user_id, :choice_id, NOW(), :result)"""
     db.session.execute(sql, {"user_id":user_id, "choice_id":choice_id, "result":result})
     db.session.commit()
     

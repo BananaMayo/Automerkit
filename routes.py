@@ -1,3 +1,4 @@
+from secrets import choice
 from app import app
 from flask import render_template, request, redirect
 import users
@@ -34,7 +35,7 @@ def create():
         poll = polls.create_poll(topic, users.user_id())
         return redirect("/poll/"+str(poll))
 
-        
+     
 ### Pitää korjata kuva näkyville
 @app.route("/poll/<int:id>")
 def play_poll(id):
@@ -48,16 +49,15 @@ def play_poll(id):
 ### Pitää korjata, ei onnistu avaamaan sivua
 @app.route("/answer", methods=["POST"])
 def answer():
-    users.require_role(1)
-    users.check_csrf()
 
-    poll_id = request.form["id"]
-    choice_id = request.form["answer"]
+    #poll_id = request.form["id"]
+    choice_id = request.form["choice_id"]
     answer = request.form["answer"]
 
-    polls.send_answer(choice_id, answer, users.user_id())
+    #polls.send_answer(choice_id, answer, users.user_id())
     choices = polls.get_choice(choice_id)
-    return render_template("answer.html", id=poll_id, choice = choices[0], answer=answer, correct = choices[1])
+
+    return render_template("answer.html", answer = answer, correct = choices[1])
 
 @app.route("/statistics")
 def poll_statistics():
@@ -82,6 +82,8 @@ def remove():
             polls.remove_poll(poll, users.user_id())
 
         return redirect("/")
+
+
 ###Login osuus
 
 @app.route("/login", methods=["GET", "POST"])
@@ -115,9 +117,9 @@ def register():
         password1 = request.form["password1"]
         password2 = request.form["password2"]
         if password1 != password2:
-            return render_template("error.html", message="Salasanat eroavat")
+            return render_template("error.html", message="Salasanat eivät täsmää")
         if password1 == "":
-            return render_template("error.html", message="Salasana on tyhjä")
+            return render_template("error.html", message="Salasanan kenttä on tyhjä")
 
         role = request.form["role"]
         if role not in ("1", "2"):
