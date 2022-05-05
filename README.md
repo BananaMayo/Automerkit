@@ -16,5 +16,3 @@ Sovelluksen ominaisuuksia ovat:
 - [X] - Asiantuntija näkee vastanneiden tilastot
 
 Sovellusta voi testata [Herokussa](https://automerkit-vierailijat.herokuapp.com/).
-
-Projektin sivut löytyvät kuvina [täältä](https://github.com/BananaMayo/Automerkit/tree/main/static/Automerkit_sivut).
