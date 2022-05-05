@@ -57,7 +57,7 @@ def answer():
     #polls.send_answer(choice_id, answer, users.user_id())
     choices = polls.get_choice(choice_id)
 
-    return render_template("answer.html", answer = answer, correct = choices[1])
+    return render_template("answer.html", answer = answer)
 
 @app.route("/statistics")
 def poll_statistics():
