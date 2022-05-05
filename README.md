@@ -16,8 +16,9 @@ Sovelluksen ominaisuuksia ovat:
 - [X] - Asiantuntija näkee vastanneiden tilastot
 
 Sovellusta voi testata [Herokussa](https://automerkit-vierailijat.herokuapp.com/).
-  * Tilastot ja poisto eivät jostain syystä toimi Herokussa, mutta Flask runilla ne toimii. Kyselyn luoiminen on
-  vielä vaiheessa, toimii kuitenkin Flask runilla muttei Herokusssa 
-      * Herokussa seuraavanlainen virhe:
+  * Tilastot ja poisto eivät jostain syystä toimi Herokussa, eikä myöskään kyselyn luominen.
+    Vastaussivu on vielä vaiheessa, toimii kuitenkin Flask runilla muttei Herokusssa 
+      * Herokussa seuraavanlainen virhe kun yrittää luoda kyselyä:
         ![image](https://user-images.githubusercontent.com/101586122/166695284-a1b5c098-0bf1-4a65-9fd8-6daeb53f736a.png)
 
+Projektin sivut löytyvät kuvina [täältä](https://github.com/BananaMayo/Automerkit/tree/main/static/Automerkit_sivut).
