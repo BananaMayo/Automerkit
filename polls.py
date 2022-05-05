@@ -22,13 +22,14 @@ def create_poll(topic, creator_id):
         sql = "INSERT INTO choices (poll_id, correct_choice) VALUES (:poll_id, :correct_choice)"
         db.session.execute(sql, {"poll_id":poll_id, "correct_choice":correct}) 
     
+    if "image" in request.form:
+        image = request.form["image"]
+        sql_ = "INSERT INTO choices (image) VALUES (bytea(:image))"
+        db.session.execute(sql_, {"image":image})
+
     db.session.commit()
     return poll_id
 
-
-#    image = request.form["image/*"]
-#    sql_ = "INSERT INTO choices (image) VALUES (bytea(:image))"
-#    db.session.execute(sql_, {"image":image})
 
 
 def get_poll_topic(id):

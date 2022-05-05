@@ -4,7 +4,14 @@
 <h2>{{ topic }}</h2>
 
 <h3>Mikä automerkki on kysessä?</h3>
-<p>{ image }</p>
+
+<p><img id="output" width="200" /></p> {{ image }}
+<script>
+var loadFile = function(event) {
+    var image = document.getElementById('output');
+    image.src = URL.createObjectURL(event.target.files[0]);
+};
+</script>
 
 <strong><p>Valitse oikea vaihtoehto:</p></strong>
 

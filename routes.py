@@ -40,11 +40,11 @@ def create():
 @app.route("/poll/<int:id>")
 def play_poll(id):
     users.require_role(1)
-#    image = polls.get_picture(id)
+    image = polls.get_picture(id)
     topic = polls.get_poll_topic(id)
     choices = polls.get_poll_choices(id)
 
-    return render_template("poll.html", id=id, topic=topic, choices=choices)
+    return render_template("poll.html", id=id, topic=topic, choices=choices, image=image)
 
 ### Pitää korjata, ei onnistu avaamaan sivua
 @app.route("/answer", methods=["POST"])
