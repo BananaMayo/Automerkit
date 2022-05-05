@@ -9,7 +9,7 @@ def get_polls():
 def create_poll(topic, creator_id):
     topic = request.form["topic"]
     sql = "INSERT INTO polls (creator_id, topic, created_at, visible) VALUES (:creator_id, :topic, NOW(), 1) RETURNING id"
-    poll_id = db.session.execute(sql, {"creator_id":creator_id, "topic":topic}).fetchone()[0]
+    poll_id = db.session.execute(sql, {"topic":topic, "creator_id":creator_id}).fetchone()[0]
 
     choices = request.form.getlist("choice")
     for choice in choices:
