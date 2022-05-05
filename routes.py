@@ -32,7 +32,7 @@ def create():
 #        if image == "No file chosen":
 #            return render_template("error.html", message="Et valinnut kuvaa")
 
-        poll = polls.create_poll(topic, users.user_id())
+        poll = polls.create_poll(users.user_id(), topic)
         return redirect("/poll/"+str(poll))
 
      
