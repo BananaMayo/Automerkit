@@ -5,13 +5,7 @@
 
 <h3>Mikä automerkki on kysessä?</h3>
 
-<p><img id="output" width="200" /></p> {{ image }}
-<script>
-var loadFile = function(event) {
-    var image = document.getElementById('output');
-    image.src = URL.createObjectURL(event.target.files[0]);
-};
-</script>
+<img src={`data:image {{ base64 }} `} />{{base64}}
 
 <strong><p>Valitse oikea vaihtoehto:</p></strong>
 
@@ -19,12 +13,12 @@ var loadFile = function(event) {
 
 {% for choice in choices[0:4] %}
 
-<input type="radio" name="answer" value="{{ choice.id }}"> {{ choice[1] }} <br>
+<input type="radio" name="answer" value="{{ choice[1] }}"> {{ choice[1] }} <br>
 {% endfor %}
 <p>
 
-<input type="hidden" name="choice_id" value="{{ id }}">
-<input type="hidden" name="choice_id" value="{{ choice_id }}">
+<input type="hidden" name="poll_id" value="{{ id }}">
+
 
 <input type="submit" value="Vastaa">
 
