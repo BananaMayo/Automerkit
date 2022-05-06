@@ -1,10 +1,8 @@
-from secrets import choice
 from app import app
 from flask import render_template, request, redirect
 import users
 import polls
 import statistic
-
 
 @app.route("/")
 def index():
@@ -28,15 +26,13 @@ def create():
         if len(topic) < 1 or len(topic) > 15:
             return render_template("error.html", message="Automerkissä tulee olla 1-15 merkkiä")
         
-#        image = request.form["image/*"]
-#        if image == "No file chosen":
-#            return render_template("error.html", message="Et valinnut kuvaa")
+        image = request.form["image"]
+        if not image:
+            return render_template("error.html", message="Et valinnut kuvaa")
 
         poll = polls.create_poll(topic, users.user_id())
         return redirect("/poll/"+str(poll))
 
-     
-### Pitää korjata kuva näkyville
 @app.route("/poll/<int:id>")
 def play_poll(id):
     users.require_role(1)
@@ -44,19 +40,17 @@ def play_poll(id):
     topic = polls.get_poll_topic(id)
     choices = polls.get_poll_choices(id)
 
-    return render_template("poll.html", id=id, topic=topic, choices=choices, image=image)
+    return render_template("poll.html", id=id, topic=topic, choices=choices, base64=image)
 
-### Pitää korjata, ei onnistu avaamaan sivua
+
 @app.route("/answer", methods=["POST"])
 def answer():
 
-    #poll_id = request.form["id"]
-    choice_id = request.form["choice_id"]
+    #id = request.form["id"]
     answer = request.form["answer"]
 
-    #polls.send_answer(choice_id, answer, users.user_id())
-    choices = polls.get_choice(choice_id)
-
+    #correct = polls.correct_answer(id)
+    #choices = polls.get_choice(poll_id)
     return render_template("answer.html", answer = answer)
 
 @app.route("/statistics")
@@ -128,9 +122,3 @@ def register():
         if not users.register(username, password1, role):
             return render_template("error.html", message="Rekisteröinti ei onnistunut")
         return redirect("/")
-
-#CREATE TABLE correct (
-#    id SERIAL PRIMARY KEY,
-#    user_id INTEGER REFERENCES users,
-#   poll_id INTEGER REFERENCES polls,   
-#);
